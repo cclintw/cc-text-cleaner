@@ -1,0 +1,142 @@
+# Copyright (C) 2026 Chance Lin
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: CC Text Cleaner 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cc-text-cleaner\n"
+"Last-Translator: Chance Lin <chance@chancedemacbook-air.local>\n"
+"Language-Team: Chinese (traditional) <zh-l10n@lists.slat.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-07T08:17:51+00:00\n"
+"PO-Revision-Date: 2026-04-07 16:18+0800\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: cc-text-cleaner\n"
+"Language: zh_TW\n"
+
+#. Plugin Name of the plugin
+#: cc-text-cleaner.php
+msgid "CC Text Cleaner"
+msgstr "CC 文字清理工具"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: cc-text-cleaner.php
+msgid "https://cclin.cc"
+msgstr "https://cclin.cc"
+
+#. Description of the plugin
+#: cc-text-cleaner.php
+msgid "Convert text files to UTF-8 and clean invalid or non-Unicode content."
+msgstr "將文字檔轉換為 UTF-8 並清理無效或非 Unicode 的內容。"
+
+#. Author of the plugin
+#: cc-text-cleaner.php
+msgid "Chance Lin"
+msgstr "Chance Lin"
+
+#: cc-text-cleaner.php:59 cc-text-cleaner.php:60
+msgid "Text Cleaner"
+msgstr "文本清理"
+
+#: cc-text-cleaner.php:82
+msgid "Text Cleaning"
+msgstr "文本清理"
+
+#: cc-text-cleaner.php:84
+msgid "Clean the text and download it directly as a plain text file (.txt)."
+msgstr "清理文本並轉為純文字檔（.txt）直接下載。"
+
+#: cc-text-cleaner.php:92
+msgid "Choose a file to clean"
+msgstr "選擇要清理的檔案"
+
+#: cc-text-cleaner.php:106
+msgid "Drag a file here, or click to select a file."
+msgstr "拖曳檔案到這裡，或點擊選擇檔案"
+
+#: cc-text-cleaner.php:109 cc-text-cleaner.php:156
+msgid "No file selected."
+msgstr "尚未選擇檔案"
+
+#: cc-text-cleaner.php:113
+msgid "Supported formats: .txt, .htm, .html, .xhtml, .csv, .xml, .md"
+msgstr "支援格式：.txt、.htm、.html、.xhtml、.csv、.xml、.md"
+
+#: cc-text-cleaner.php:122
+msgid "Clean Text and Download"
+msgstr "清理文本並下載"
+
+#: cc-text-cleaner.php:124
+msgid "Help"
+msgstr "說明"
+
+#: cc-text-cleaner.php:132
+msgid ""
+"This tool performs the following cleanup tasks, then converts the result "
+"into a plain text file (.txt) for direct download. No files are stored on "
+"this website. The maximum accepted file size is 5MB. For more advanced "
+"cleanup options, please use the site’s other tool."
+msgstr ""
+"此工具會進行以下清理工作，並將結果轉換為純文字檔（.txt）供直接下載。"
+"本網站不會儲存任何檔案，最大可上傳檔案為 5MB。"
+"若需更進階的清理功能，請使用本站其他工具。"
+
+#: cc-text-cleaner.php:139
+msgid ""
+"1. Remove half-width spaces except those between English letters or symbols."
+msgstr "1. 清除半形空格，僅保留英文或符號之間的半形空格"
+
+#: cc-text-cleaner.php:140
+msgid "2. Remove all control characters except line breaks."
+msgstr "2. 清除所有控制碼，僅保留換行符號"
+
+#: cc-text-cleaner.php:141
+msgid "3. Replace invalid characters or garbled text with ■."
+msgstr "3. 非法字元或亂碼以 ■ 取代"
+
+#: cc-text-cleaner.php:142
+msgid ""
+"4. Replace HTML heading (<h1> - <h6>) and paragraph (<p>) tags with line "
+"breaks."
+msgstr "4. 將 HTML 標題（<h1>-<h6>）與段落（<p>）標籤替換為換行符號"
+
+#: cc-text-cleaner.php:143
+msgid "5. Remove HTML, XML, CSS, Script, and other syntax or tags."
+msgstr "5. 清除 HTML、XML、CSS、Script 等語法與標籤"
+
+#: cc-text-cleaner.php:144
+msgid ""
+"6. Convert some vertical full-width punctuation marks to horizontal "
+"punctuation marks (﹃ ﹄ ﹁ ﹂ ︿ ﹀ ︽ ︾)."
+msgstr "6. 將部分直排全形標點符號轉為橫排標點符號（﹃ ﹄ ﹁ ﹂ ︿ ﹀ ︽ ︾）"
+
+#: cc-text-cleaner.php:157
+msgid "Selected: "
+msgstr "已選擇："
+
+#: cc-text-cleaner.php:220
+msgid "No file was uploaded."
+msgstr "尚未上傳檔案"
+
+#: cc-text-cleaner.php:228
+#, php-format
+msgid "Upload error. Error code: %s"
+msgstr "上傳錯誤，錯誤碼：%s"
+
+#: cc-text-cleaner.php:238
+msgid "The file is too large. Please keep it under 5MB."
+msgstr "檔案過大，請限制在 5MB 以下"
+
+#: cc-text-cleaner.php:322
+msgid "The file cannot be downloaded."
+msgstr "檔案無法下載"
+
+#: cc-text-cleaner.php:328
+msgid "Verification failed."
+msgstr "驗證失敗"
+
+#: cc-text-cleaner.php:333
+msgid "The file has expired or does not exist."
+msgstr "檔案已過期或不存在"
