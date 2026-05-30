@@ -11,10 +11,11 @@ It is especially useful for researchers, archivists, and digital humanities user
 - Remove invalid or garbled characters
 - Strip HTML, XML, CSS, and script tags
 - Preserve line breaks while removing unwanted control characters
-- Replace unsupported characters with a visible placeholder
+- Replace unsupported characters with the visible placeholder ■
 - Download the cleaned result as a plain text file
 - Includes shortcode support: `[cc_text_cleaner]`
 - Translation ready with `cc-text-cleaner` text domain
+- Nonce-protected upload form with server-side file extension checks
 
 ## Installation
 
@@ -36,7 +37,9 @@ It is especially useful for researchers, archivists, and digital humanities user
 ## Notes
 
 - Maximum file size: 5MB
+- The shortcode can be used on public pages
 - Files are processed temporarily and removed after download
+- Uploaded files are processed locally and are not sent to third-party services
 - The plugin is translation ready
 
 ## Changelog

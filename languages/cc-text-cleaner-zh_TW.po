@@ -4,16 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CC Text Cleaner 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cc-text-cleaner\n"
-"Last-Translator: Chance Lin <chance@chancedemacbook-air.local>\n"
+"POT-Creation-Date: 2026-05-29T09:03:05+00:00\n"
+"PO-Revision-Date: 2026-05-29 17:02+0800\n"
+"Last-Translator: Chance Lin <contact@cclin.cc>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@lists.slat.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-07T08:17:51+00:00\n"
-"PO-Revision-Date: 2026-04-07 16:18+0800\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: cc-text-cleaner\n"
-"Language: zh_TW\n"
 
 #. Plugin Name of the plugin
 #: cc-text-cleaner.php
@@ -48,95 +48,134 @@ msgstr "文本清理"
 msgid "Clean the text and download it directly as a plain text file (.txt)."
 msgstr "清理文本並轉為純文字檔（.txt）直接下載。"
 
-#: cc-text-cleaner.php:92
+#: cc-text-cleaner.php:93
 msgid "Choose a file to clean"
 msgstr "選擇要清理的檔案"
 
-#: cc-text-cleaner.php:106
+#: cc-text-cleaner.php:107
 msgid "Drag a file here, or click to select a file."
 msgstr "拖曳檔案到這裡，或點擊選擇檔案"
 
-#: cc-text-cleaner.php:109 cc-text-cleaner.php:156
+#: cc-text-cleaner.php:110 cc-text-cleaner.php:157
 msgid "No file selected."
 msgstr "尚未選擇檔案"
 
-#: cc-text-cleaner.php:113
+#: cc-text-cleaner.php:114
 msgid "Supported formats: .txt, .htm, .html, .xhtml, .csv, .xml, .md"
 msgstr "支援格式：.txt、.htm、.html、.xhtml、.csv、.xml、.md"
 
-#: cc-text-cleaner.php:122
+#: cc-text-cleaner.php:123
 msgid "Clean Text and Download"
 msgstr "清理文本並下載"
 
-#: cc-text-cleaner.php:124
+#: cc-text-cleaner.php:125
 msgid "Help"
 msgstr "說明"
 
-#: cc-text-cleaner.php:132
+#: cc-text-cleaner.php:133
 msgid ""
 "This tool performs the following cleanup tasks, then converts the result "
 "into a plain text file (.txt) for direct download. No files are stored on "
 "this website. The maximum accepted file size is 5MB. For more advanced "
 "cleanup options, please use the site’s other tool."
 msgstr ""
-"此工具會進行以下清理工作，並將結果轉換為純文字檔（.txt）供直接下載。"
-"本網站不會儲存任何檔案，最大可上傳檔案為 5MB。"
-"若需更進階的清理功能，請使用本站其他工具。"
+"此工具會進行以下清理工作，並將結果轉換為純文字檔（.txt）供直接下載。本網站不"
+"會儲存任何檔案，最大可上傳檔案為 5MB。若需更進階的清理功能，請使用本站其他工"
+"具。"
 
-#: cc-text-cleaner.php:139
+#: cc-text-cleaner.php:140
 msgid ""
 "1. Remove half-width spaces except those between English letters or symbols."
 msgstr "1. 清除半形空格，僅保留英文或符號之間的半形空格"
 
-#: cc-text-cleaner.php:140
+#: cc-text-cleaner.php:141
 msgid "2. Remove all control characters except line breaks."
 msgstr "2. 清除所有控制碼，僅保留換行符號"
 
-#: cc-text-cleaner.php:141
+#: cc-text-cleaner.php:142
 msgid "3. Replace invalid characters or garbled text with ■."
 msgstr "3. 非法字元或亂碼以 ■ 取代"
 
-#: cc-text-cleaner.php:142
+#: cc-text-cleaner.php:143
 msgid ""
 "4. Replace HTML heading (<h1> - <h6>) and paragraph (<p>) tags with line "
 "breaks."
 msgstr "4. 將 HTML 標題（<h1>-<h6>）與段落（<p>）標籤替換為換行符號"
 
-#: cc-text-cleaner.php:143
+#: cc-text-cleaner.php:144
 msgid "5. Remove HTML, XML, CSS, Script, and other syntax or tags."
 msgstr "5. 清除 HTML、XML、CSS、Script 等語法與標籤"
 
-#: cc-text-cleaner.php:144
+#: cc-text-cleaner.php:145
 msgid ""
 "6. Convert some vertical full-width punctuation marks to horizontal "
 "punctuation marks (﹃ ﹄ ﹁ ﹂ ︿ ﹀ ︽ ︾)."
 msgstr "6. 將部分直排全形標點符號轉為橫排標點符號（﹃ ﹄ ﹁ ﹂ ︿ ﹀ ︽ ︾）"
 
-#: cc-text-cleaner.php:157
-msgid "Selected: "
-msgstr "已選擇："
+#. translators: %s: selected file name.
+#: cc-text-cleaner.php:160
+#, php-format
+msgid "Selected: %s"
+msgstr "已選擇：%s"
 
-#: cc-text-cleaner.php:220
+#: cc-text-cleaner.php:230
+msgid "Security check failed. Please reload the page and try again."
+msgstr "安全性檢查失敗。請重新載入頁面後再試一次。"
+
+#: cc-text-cleaner.php:234
 msgid "No file was uploaded."
 msgstr "尚未上傳檔案"
 
-#: cc-text-cleaner.php:228
+#: cc-text-cleaner.php:240
+msgid "Invalid upload data."
+msgstr "上傳資料無效。"
+
+#: cc-text-cleaner.php:248
+msgid "Unsupported file type."
+msgstr "不支援的檔案類型。"
+
+#. translators: %s: PHP upload error code.
+#: cc-text-cleaner.php:255
 #, php-format
 msgid "Upload error. Error code: %s"
 msgstr "上傳錯誤，錯誤碼：%s"
 
-#: cc-text-cleaner.php:238
+#: cc-text-cleaner.php:263
 msgid "The file is too large. Please keep it under 5MB."
 msgstr "檔案過大，請限制在 5MB 以下"
 
-#: cc-text-cleaner.php:322
+#: cc-text-cleaner.php:269
+msgid "Unable to read the uploaded file."
+msgstr "無法讀取上傳的檔案。"
+
+#: cc-text-cleaner.php:315
+msgid "Unable to access the uploads directory."
+msgstr "無法存取上傳目錄。"
+
+#: cc-text-cleaner.php:321
+msgid "Unable to create a temporary cleaning directory."
+msgstr "無法建立暫存清理目錄。"
+
+#: cc-text-cleaner.php:330
+msgid "Unable to write the cleaned file."
+msgstr "無法寫入清理後的檔案。"
+
+#: cc-text-cleaner.php:361
 msgid "The file cannot be downloaded."
 msgstr "檔案無法下載"
 
-#: cc-text-cleaner.php:328
+#: cc-text-cleaner.php:368
 msgid "Verification failed."
 msgstr "驗證失敗"
 
-#: cc-text-cleaner.php:333
+#: cc-text-cleaner.php:373
 msgid "The file has expired or does not exist."
 msgstr "檔案已過期或不存在"
+
+#: cc-text-cleaner.php:382
+msgid "Unable to read the cleaned file."
+msgstr "無法讀取清理後的檔案。"
+
+#: cc-text-cleaner.php:435
+msgid "Unable to access the filesystem."
+msgstr "無法存取檔案系統。"

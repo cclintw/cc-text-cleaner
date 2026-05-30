@@ -1,16 +1,15 @@
 <?php
-/**
+/*
  * Plugin Name: CC Text Cleaner
- * Plugin URI: https://cclin.cc
  * Description: Convert text files to UTF-8 and clean invalid or non-Unicode content.
  * Version: 1.0.0
  * Author: Chance Lin
- * Author URI: https://cclin.cc
  * Text Domain: cc-text-cleaner
  * Domain Path: /languages
+ * Author URI: https://cclin.cc
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- */
+*/
 
 if (!defined('ABSPATH')) {
     exit;
@@ -34,7 +33,6 @@ class CC_Text_Cleaner
 
     private function __construct()
     {
-        add_action('init', [$this, 'load_textdomain']);
         add_action('admin_menu', [$this, 'register_admin_menu']);
         add_action('admin_post_cc_text_clean_download', [$this, 'download']);
         add_action('admin_post_nopriv_cc_text_clean_download', [$this, 'download']);
@@ -42,15 +40,6 @@ class CC_Text_Cleaner
         add_action('admin_post_cc_text_clean_upload', [$this, 'handle_upload']);
         add_action('admin_post_nopriv_cc_text_clean_upload', [$this, 'handle_upload']);
         add_shortcode('cc_text_cleaner', [$this, 'render_shortcode']);
-    }
-
-    public function load_textdomain()
-    {
-        load_plugin_textdomain(
-            'cc-text-cleaner',
-            false,
-            dirname(plugin_basename(__FILE__)) . '/languages'
-        );
     }
 
     public function register_admin_menu()
@@ -66,7 +55,7 @@ class CC_Text_Cleaner
 
     public function render_page()
     {
-        echo $this->render_form();
+        echo $this->render_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_form escapes all dynamic output.
     }
 
     public function render_shortcode()
@@ -78,7 +67,75 @@ class CC_Text_Cleaner
     {
         ob_start();
         ?>
-        <div class="cc-text-cleaner-wrap" style="max-width:780px;text-align:center;">
+        <style>
+            .cc-text-cleaner-wrap {
+                max-width: 780px;
+                text-align: center;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-dropzone {
+                position: relative;
+                border: 2px dashed #8bb9df;
+                border-radius: 14px;
+                padding: 44px 24px;
+                text-align: center;
+                background: #f8fbff;
+                cursor: pointer;
+                transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-dropzone:hover {
+                border-color: #2271b1;
+                background: #f0f7ff;
+                box-shadow: 0 10px 28px rgba(34, 113, 177, .10);
+            }
+
+            .cc-text-cleaner-wrap .cc-text-upload-icon {
+                align-items: center;
+                background: #e7f2fb;
+                border-radius: 50%;
+                color: #2271b1;
+                display: inline-flex;
+                height: 56px;
+                justify-content: center;
+                margin-bottom: 16px;
+                width: 56px;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-primary-button {
+                background: #2271b1 !important;
+                border-color: #2271b1 !important;
+                border-radius: 6px !important;
+                box-shadow: none !important;
+                color: #fff !important;
+                font-weight: 600;
+                min-height: 40px;
+                padding: 0 18px;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-primary-button:hover {
+                background: #135e96 !important;
+                border-color: #135e96 !important;
+                color: #fff !important;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-secondary-button {
+                background: #fff !important;
+                border-color: #b9c8d6 !important;
+                border-radius: 6px !important;
+                color: #1d4f73 !important;
+                min-height: 40px;
+                padding: 0 16px;
+            }
+
+            .cc-text-cleaner-wrap .cc-text-secondary-button:hover {
+                background: #f0f7ff !important;
+                border-color: #7aa7cf !important;
+                color: #0f4164 !important;
+            }
+        </style>
+
+        <div class="cc-text-cleaner-wrap">
             <h2><?php echo esc_html__('Text Cleaning', 'cc-text-cleaner'); ?></h2>
             <p style="margin-top:0;font-size:14px;">
                 <?php echo esc_html__('Clean the text and download it directly as a plain text file (.txt).', 'cc-text-cleaner'); ?>
@@ -88,12 +145,11 @@ class CC_Text_Cleaner
                 action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                 style="margin-top:3rem;">
                 <input type="hidden" name="action" value="cc_text_clean_upload">
+                <?php wp_nonce_field('cc_text_clean_upload', 'cc_text_cleaner_nonce'); ?>
 
                 <h6><?php echo esc_html__('Choose a file to clean', 'cc-text-cleaner'); ?></h6>
 
-                <div class="cc-text-dropzone"
-                    id="cc-text-dropzone"
-                    style="position:relative;border:2px dashed #c3c4c7;border-radius:12px;padding:40px 20px;text-align:center;background:#fafafa;cursor:pointer;transition:all .2s ease;">
+                <div id="cc-text-dropzone" class="cc-text-dropzone">
                     <input type="file"
                         name="cc_text_file"
                         id="cc_text_file"
@@ -102,14 +158,21 @@ class CC_Text_Cleaner
                         style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:2;">
 
                     <div class="cc-text-dropzone-content" style="pointer-events:none;position:relative;z-index:1;">
-                        <div id="cc-text-dropzone-title" style="font-size:16px;font-weight:600;margin-bottom:8px;">
+                        <div class="cc-text-upload-icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" focusable="false">
+                                <path d="M12 16V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M7 9L12 4L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M20 16.5V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <div id="cc-text-dropzone-title" style="font-size:17px;font-weight:700;margin-bottom:8px;color:#1d2327;">
                             <?php echo esc_html__('Drag a file here, or click to select a file.', 'cc-text-cleaner'); ?>
                         </div>
-                        <div id="cc-text-dropzone-filename" style="color:#666;margin-bottom:2rem;">
+                        <div id="cc-text-dropzone-filename" style="display:inline-block;color:#4f5d66;background:#fff;border:1px solid #d5e4f0;border-radius:999px;padding:6px 14px;margin-bottom:1.75rem;">
                             <?php echo esc_html__('No file selected.', 'cc-text-cleaner'); ?>
                         </div>
 
-                        <p style="font-size:14px;margin-block-start:10px;">
+                        <p style="font-size:14px;margin-block-start:10px;color:#60717f;">
                             <?php echo esc_html__('Supported formats: .txt, .htm, .html, .xhtml, .csv, .xml, .md', 'cc-text-cleaner'); ?>
                         </p>
                     </div>
@@ -118,9 +181,9 @@ class CC_Text_Cleaner
                 <p style="text-align:right;margin-top:3rem;display:flex;justify-content:flex-end;gap:10px;align-items:center;">
                     <input
                         type="submit"
-                        class="button button-primary"
+                        class="button button-primary cc-text-primary-button"
                         value="<?php echo esc_attr__('Clean Text and Download', 'cc-text-cleaner'); ?>">
-                    <button type="button" id="cc-text-cleaner-help-toggle" class="button">
+                    <button type="button" id="cc-text-cleaner-help-toggle" class="button cc-text-secondary-button">
                         <?php echo esc_html__('Help', 'cc-text-cleaner'); ?>
                     </button>
                 </p>
@@ -154,12 +217,15 @@ class CC_Text_Cleaner
             var helpToggle = document.getElementById('cc-text-cleaner-help-toggle');
             var helpBox = document.getElementById('cc-text-cleaner-help-box');
             var noFileText = <?php echo wp_json_encode(__('No file selected.', 'cc-text-cleaner')); ?>;
-            var selectedPrefix = <?php echo wp_json_encode(__('Selected: ', 'cc-text-cleaner')); ?>;
+            var selectedFormat = <?php echo wp_json_encode(
+                /* translators: %s: selected file name. */
+                __('Selected: %s', 'cc-text-cleaner')
+            ); ?>;
 
             if (dropzone && input && filename) {
                 function updateFileName(files) {
                     if (files && files.length > 0) {
-                        filename.textContent = selectedPrefix + files[0].name;
+                        filename.textContent = selectedFormat.replace('%s', files[0].name);
                     } else {
                         filename.textContent = noFileText;
                     }
@@ -174,7 +240,8 @@ class CC_Text_Cleaner
                         e.preventDefault();
                         e.stopPropagation();
                         dropzone.style.borderColor = '#2271b1';
-                        dropzone.style.background = '#f0f6fc';
+                        dropzone.style.background = '#f0f7ff';
+                        dropzone.style.boxShadow = '0 10px 28px rgba(34, 113, 177, .14)';
                     });
                 });
 
@@ -182,8 +249,9 @@ class CC_Text_Cleaner
                     dropzone.addEventListener(eventName, function (e) {
                         e.preventDefault();
                         e.stopPropagation();
-                        dropzone.style.borderColor = '#c3c4c7';
-                        dropzone.style.background = '#fafafa';
+                        dropzone.style.borderColor = '#8bb9df';
+                        dropzone.style.background = '#f8fbff';
+                        dropzone.style.boxShadow = 'none';
                     });
                 });
 
@@ -212,36 +280,58 @@ class CC_Text_Cleaner
 
     public function handle_upload()
     {
-        if (isset($_GET['downloaded']) && $_GET['downloaded'] === 'true') {
+        $downloaded = isset($_GET['downloaded']) ? sanitize_text_field(wp_unslash($_GET['downloaded'])) : '';
+
+        if ($downloaded === 'true') {
             return;
+        }
+
+        $nonce = isset($_POST['cc_text_cleaner_nonce'])
+            ? sanitize_text_field(wp_unslash($_POST['cc_text_cleaner_nonce']))
+            : '';
+
+        if (!wp_verify_nonce($nonce, 'cc_text_clean_upload')) {
+            wp_die(esc_html__('Security check failed. Please reload the page and try again.', 'cc-text-cleaner'));
         }
 
         if (empty($_FILES['cc_text_file'])) {
             wp_die(esc_html__('No file was uploaded.', 'cc-text-cleaner'));
         }
 
-        $file = $_FILES['cc_text_file'];
+        $file = wp_unslash($_FILES['cc_text_file']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- File upload arrays are validated and individual values are sanitized below.
+
+        if (!is_array($file) || !isset($file['error'], $file['tmp_name'], $file['name'], $file['size'])) {
+            wp_die(esc_html__('Invalid upload data.', 'cc-text-cleaner'));
+        }
+
+        $allowed_extensions = ['txt', 'csv', 'html', 'htm', 'md', 'xml', 'xhtml'];
+        $original_name = sanitize_file_name($file['name']);
+        $uploaded_extension = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
+
+        if (!in_array($uploaded_extension, $allowed_extensions, true)) {
+            wp_die(esc_html__('Unsupported file type.', 'cc-text-cleaner'));
+        }
 
         if ((int) $file['error'] !== UPLOAD_ERR_OK) {
-            echo '<div class="notice notice-error"><p>' .
+            wp_die(
                 sprintf(
+                    /* translators: %s: PHP upload error code. */
                     esc_html__('Upload error. Error code: %s', 'cc-text-cleaner'),
                     esc_html((string) $file['error'])
-                ) .
-                '</p></div>';
-            return;
+                )
+            );
         }
 
         $max_size = 5 * 1024 * 1024;
         if ((int) $file['size'] > $max_size) {
-            echo '<div class="notice notice-error"><p>' .
-                esc_html__('The file is too large. Please keep it under 5MB.', 'cc-text-cleaner') .
-                '</p></div>';
-            return;
+            wp_die(esc_html__('The file is too large. Please keep it under 5MB.', 'cc-text-cleaner'));
         }
 
         $raw = file_get_contents($file['tmp_name']);
-        $original_name = sanitize_file_name($file['name']);
+
+        if ($raw === false) {
+            wp_die(esc_html__('Unable to read the uploaded file.', 'cc-text-cleaner'));
+        }
 
         if (mb_check_encoding($raw, 'UTF-8')) {
             $clean = self::clean_utf8_bytes($raw);
@@ -284,14 +374,25 @@ class CC_Text_Cleaner
         $clean = preg_replace("/\n{3,}/", "\n\n", $clean);
 
         $upload_dir = wp_upload_dir();
+
+        if (!empty($upload_dir['error'])) {
+            wp_die(esc_html__('Unable to access the uploads directory.', 'cc-text-cleaner'));
+        }
+
         $tmp_dir = trailingslashit($upload_dir['basedir']) . self::TMP_DIR_NAME;
-        wp_mkdir_p($tmp_dir);
+
+        if (!wp_mkdir_p($tmp_dir)) {
+            wp_die(esc_html__('Unable to create a temporary cleaning directory.', 'cc-text-cleaner'));
+        }
 
         $base = pathinfo($original_name, PATHINFO_FILENAME);
         $filename = $base . '.txt';
 
         $output_path = trailingslashit($tmp_dir) . wp_unique_filename($tmp_dir, $filename);
-        file_put_contents($output_path, $clean);
+
+        if (file_put_contents($output_path, $clean) === false) {
+            wp_die(esc_html__('Unable to write the cleaned file.', 'cc-text-cleaner'));
+        }
 
         $token = wp_generate_password(20, false, false);
         set_transient(
@@ -312,19 +413,22 @@ class CC_Text_Cleaner
             'downloaded' => 'true',
         ], admin_url('admin-post.php'));
 
-        wp_redirect($download_url);
+        wp_safe_redirect($download_url);
         exit;
     }
 
     public function download()
     {
-        if (!isset($_GET['downloaded']) || $_GET['downloaded'] !== 'true') {
+        $downloaded = isset($_GET['downloaded']) ? sanitize_text_field(wp_unslash($_GET['downloaded'])) : '';
+
+        if ($downloaded !== 'true') {
             wp_die(esc_html__('The file cannot be downloaded.', 'cc-text-cleaner'));
         }
 
-        $token = sanitize_text_field($_GET['token'] ?? '');
+        $token = isset($_GET['token']) ? sanitize_text_field(wp_unslash($_GET['token'])) : '';
+        $nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
 
-        if (!wp_verify_nonce($_GET['_wpnonce'] ?? '', self::TOKEN_PREFIX . $token)) {
+        if (!wp_verify_nonce($nonce, self::TOKEN_PREFIX . $token)) {
             wp_die(esc_html__('Verification failed.', 'cc-text-cleaner'));
         }
 
@@ -337,6 +441,10 @@ class CC_Text_Cleaner
 
         $filepath = $payload['path'];
         $filename = $payload['name'];
+
+        if (!is_readable($filepath)) {
+            wp_die(esc_html__('Unable to read the cleaned file.', 'cc-text-cleaner'));
+        }
 
         if (ob_get_length()) {
             ob_end_clean();
@@ -352,7 +460,7 @@ class CC_Text_Cleaner
         header('X-Content-Type-Options: nosniff');
 
         flush();
-        readfile($filepath);
+        $this->output_file($filepath);
         flush();
 
         if (function_exists('fastcgi_finish_request')) {
@@ -360,16 +468,11 @@ class CC_Text_Cleaner
         }
 
         if (file_exists($filepath)) {
-            @unlink($filepath);
+            wp_delete_file($filepath);
         }
 
         $tmp_dir = dirname($filepath);
-        if (is_dir($tmp_dir)) {
-            $remaining = array_diff(scandir($tmp_dir), ['.', '..']);
-            if (empty($remaining)) {
-                @rmdir($tmp_dir);
-            }
-        }
+        $this->remove_empty_directory($tmp_dir);
 
         exit;
     }
@@ -378,19 +481,55 @@ class CC_Text_Cleaner
     {
         foreach ($files as $file) {
             if ($file && file_exists($file)) {
-                @unlink($file);
+                wp_delete_file($file);
             }
         }
 
         if (!empty($files[0])) {
             $dir = dirname($files[0]);
-            if (is_dir($dir)) {
-                $remaining = array_diff(scandir($dir), ['.', '..']);
-                if (empty($remaining)) {
-                    @rmdir($dir);
-                }
-            }
+            $this->remove_empty_directory($dir);
         }
+    }
+
+    private function output_file($filepath)
+    {
+        $filesystem = $this->get_filesystem();
+
+        if (!$filesystem) {
+            wp_die(esc_html__('Unable to access the filesystem.', 'cc-text-cleaner'));
+        }
+
+        echo $filesystem->get_contents($filepath); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sends cleaned text file contents to the download response.
+    }
+
+    private function remove_empty_directory($dir)
+    {
+        $filesystem = $this->get_filesystem();
+
+        if (!$filesystem || !$filesystem->is_dir($dir)) {
+            return;
+        }
+
+        $remaining = $filesystem->dirlist($dir);
+
+        if (empty($remaining)) {
+            $filesystem->rmdir($dir);
+        }
+    }
+
+    private function get_filesystem()
+    {
+        global $wp_filesystem;
+
+        if (!function_exists('WP_Filesystem')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+
+        if (!$wp_filesystem) {
+            WP_Filesystem();
+        }
+
+        return $wp_filesystem;
     }
 
     public static function clean_big5_bytes($raw)

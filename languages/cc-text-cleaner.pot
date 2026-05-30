@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-07T08:17:51+00:00\n"
+"POT-Creation-Date: 2026-05-29T09:03:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: cc-text-cleaner\n"
@@ -48,84 +48,123 @@ msgstr ""
 msgid "Clean the text and download it directly as a plain text file (.txt)."
 msgstr ""
 
-#: cc-text-cleaner.php:92
+#: cc-text-cleaner.php:93
 msgid "Choose a file to clean"
 msgstr ""
 
-#: cc-text-cleaner.php:106
+#: cc-text-cleaner.php:107
 msgid "Drag a file here, or click to select a file."
 msgstr ""
 
-#: cc-text-cleaner.php:109
-#: cc-text-cleaner.php:156
+#: cc-text-cleaner.php:110
+#: cc-text-cleaner.php:157
 msgid "No file selected."
 msgstr ""
 
-#: cc-text-cleaner.php:113
+#: cc-text-cleaner.php:114
 msgid "Supported formats: .txt, .htm, .html, .xhtml, .csv, .xml, .md"
 msgstr ""
 
-#: cc-text-cleaner.php:122
+#: cc-text-cleaner.php:123
 msgid "Clean Text and Download"
 msgstr ""
 
-#: cc-text-cleaner.php:124
+#: cc-text-cleaner.php:125
 msgid "Help"
 msgstr ""
 
-#: cc-text-cleaner.php:132
+#: cc-text-cleaner.php:133
 msgid "This tool performs the following cleanup tasks, then converts the result into a plain text file (.txt) for direct download. No files are stored on this website. The maximum accepted file size is 5MB. For more advanced cleanup options, please use the site’s other tool."
 msgstr ""
 
-#: cc-text-cleaner.php:139
+#: cc-text-cleaner.php:140
 msgid "1. Remove half-width spaces except those between English letters or symbols."
 msgstr ""
 
-#: cc-text-cleaner.php:140
+#: cc-text-cleaner.php:141
 msgid "2. Remove all control characters except line breaks."
 msgstr ""
 
-#: cc-text-cleaner.php:141
+#: cc-text-cleaner.php:142
 msgid "3. Replace invalid characters or garbled text with ■."
 msgstr ""
 
-#: cc-text-cleaner.php:142
+#: cc-text-cleaner.php:143
 msgid "4. Replace HTML heading (<h1> - <h6>) and paragraph (<p>) tags with line breaks."
 msgstr ""
 
-#: cc-text-cleaner.php:143
+#: cc-text-cleaner.php:144
 msgid "5. Remove HTML, XML, CSS, Script, and other syntax or tags."
 msgstr ""
 
-#: cc-text-cleaner.php:144
+#: cc-text-cleaner.php:145
 msgid "6. Convert some vertical full-width punctuation marks to horizontal punctuation marks (﹃ ﹄ ﹁ ﹂ ︿ ﹀ ︽ ︾)."
 msgstr ""
 
-#: cc-text-cleaner.php:157
-msgid "Selected: "
+#. translators: %s: selected file name.
+#: cc-text-cleaner.php:160
+#, php-format
+msgid "Selected: %s"
 msgstr ""
 
-#: cc-text-cleaner.php:220
+#: cc-text-cleaner.php:230
+msgid "Security check failed. Please reload the page and try again."
+msgstr ""
+
+#: cc-text-cleaner.php:234
 msgid "No file was uploaded."
 msgstr ""
 
-#: cc-text-cleaner.php:228
+#: cc-text-cleaner.php:240
+msgid "Invalid upload data."
+msgstr ""
+
+#: cc-text-cleaner.php:248
+msgid "Unsupported file type."
+msgstr ""
+
+#. translators: %s: PHP upload error code.
+#: cc-text-cleaner.php:255
 #, php-format
 msgid "Upload error. Error code: %s"
 msgstr ""
 
-#: cc-text-cleaner.php:238
+#: cc-text-cleaner.php:263
 msgid "The file is too large. Please keep it under 5MB."
 msgstr ""
 
-#: cc-text-cleaner.php:322
+#: cc-text-cleaner.php:269
+msgid "Unable to read the uploaded file."
+msgstr ""
+
+#: cc-text-cleaner.php:315
+msgid "Unable to access the uploads directory."
+msgstr ""
+
+#: cc-text-cleaner.php:321
+msgid "Unable to create a temporary cleaning directory."
+msgstr ""
+
+#: cc-text-cleaner.php:330
+msgid "Unable to write the cleaned file."
+msgstr ""
+
+#: cc-text-cleaner.php:361
 msgid "The file cannot be downloaded."
 msgstr ""
 
-#: cc-text-cleaner.php:328
+#: cc-text-cleaner.php:368
 msgid "Verification failed."
 msgstr ""
 
-#: cc-text-cleaner.php:333
+#: cc-text-cleaner.php:373
 msgid "The file has expired or does not exist."
+msgstr ""
+
+#: cc-text-cleaner.php:382
+msgid "Unable to read the cleaned file."
+msgstr ""
+
+#: cc-text-cleaner.php:435
+msgid "Unable to access the filesystem."
 msgstr ""
