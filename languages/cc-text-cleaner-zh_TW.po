@@ -18,7 +18,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: cc-text-cleaner.php
 msgid "CC Text Cleaner"
-msgstr "CC Text Cleaner"
+msgstr "CC 文本清理"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
@@ -38,11 +38,11 @@ msgstr "Chance Lin"
 
 #: cc-text-cleaner.php:59 cc-text-cleaner.php:60
 msgid "Text Cleaner"
-msgstr "文本清理"
+msgstr "CC 文本清理"
 
 #: cc-text-cleaner.php:82
 msgid "Text Cleaning"
-msgstr "文本清理"
+msgstr "CC 文本清理"
 
 #: cc-text-cleaner.php:84
 msgid "Clean the text and download it directly as a plain text file (.txt)."
