@@ -45,8 +45,8 @@ class CC_Text_Cleaner
     public function register_admin_menu()
     {
         add_management_page(
-            __('Text Cleaner', 'cc-text-cleaner'),
-            __('Text Cleaner', 'cc-text-cleaner'),
+            __('CC Text Cleaner', 'cc-text-cleaner'),
+            __('CC Text Cleaner', 'cc-text-cleaner'),
             'manage_options',
             'cc-text-cleaner',
             [$this, 'render_page']
@@ -136,7 +136,7 @@ class CC_Text_Cleaner
         </style>
 
         <div class="cc-text-cleaner-wrap">
-            <h2><?php echo esc_html__('Text Cleaning', 'cc-text-cleaner'); ?></h2>
+            <h2><?php echo esc_html__('CC Text Cleaning', 'cc-text-cleaner'); ?></h2>
             <p style="margin-top:0;font-size:14px;">
                 <?php echo esc_html__('Clean the text and download it directly as a plain text file (.txt).', 'cc-text-cleaner'); ?>
             </p>

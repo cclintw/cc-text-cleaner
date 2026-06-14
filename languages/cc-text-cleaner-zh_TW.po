@@ -17,6 +17,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: cc-text-cleaner.php
+#: cc-text-cleaner.php:48 cc-text-cleaner.php:49
 msgid "CC Text Cleaner"
 msgstr "CC 文本清理"
 
@@ -36,12 +37,8 @@ msgstr "將文字檔轉換為 UTF-8 並清理無效或非 Unicode 的內容。"
 msgid "Chance Lin"
 msgstr "Chance Lin"
 
-#: cc-text-cleaner.php:59 cc-text-cleaner.php:60
-msgid "Text Cleaner"
-msgstr "CC 文本清理"
-
-#: cc-text-cleaner.php:82
-msgid "Text Cleaning"
+#: cc-text-cleaner.php:139
+msgid "CC Text Cleaning"
 msgstr "CC 文本清理"
 
 #: cc-text-cleaner.php:84
